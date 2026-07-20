@@ -14,11 +14,11 @@
     "primary": "desktop",
     "web": {
       "runtime": "sandbox-js",
-      "entry": "inline"
+      "entry": "dist/pack.mjs"
     },
     "desktop": {
       "runtime": "sandbox-js",
-      "entry": "inline",
+      "entry": "dist/pack.mjs",
       "min_app_version": "0.1.0"
     }
   },
@@ -28,23 +28,48 @@
       "content_type": "vineyard:plugin",
       "name": "WhatsMyName Account Search",
       "version": "1.0.0",
-      "description": "Checks whether the selected username exists across ~700 sites (WhatsMyName dataset) by querying each site directly from the Vineyard desktop app, and adds the discovered accounts to the graph. Desktop only — a browser cannot read the cross-origin responses these checks depend on.",
+      "description": "Checks whether the selected username exists across ~700 sites (WhatsMyName dataset) by querying each site directly from the Vineyard desktop app, and adds the discovered accounts to the graph. Desktop only \u2014 a browser cannot read the cross-origin responses these checks depend on.",
       "icon": "at-sign",
       "platforms": {
         "primary": "desktop",
-        "web": { "runtime": "sandbox-js", "entry": "inline" },
-        "desktop": { "runtime": "sandbox-js", "entry": "inline", "min_app_version": "0.1.0" }
+        "web": {
+          "runtime": "sandbox-js",
+          "entry": "dist/pack.mjs"
+        },
+        "desktop": {
+          "runtime": "sandbox-js",
+          "entry": "dist/pack.mjs",
+          "min_app_version": "0.1.0"
+        }
       },
       "io": {
-        "consumes": [{ "typepack": "run.vineyard.typepacks.identity", "category": "identity", "name": "user_account" }],
-        "produces": [{ "typepack": "run.vineyard.typepacks.identity", "category": "identity", "name": "user_account" }]
+        "consumes": [
+          {
+            "typepack": "run.vineyard.typepacks.identity",
+            "category": "identity",
+            "name": "user_account"
+          }
+        ],
+        "produces": [
+          {
+            "typepack": "run.vineyard.typepacks.identity",
+            "category": "identity",
+            "name": "user_account"
+          }
+        ]
       },
       "scopes": {
-        "graph": ["node:read", "node:create", "edge:create"],
+        "graph": [
+          "node:read",
+          "node:create",
+          "edge:create"
+        ],
         "network": [
           {
             "endpoint": "https://cdn.jsdelivr.net/gh/WebBreacher/WhatsMyName@main/wmn-data.json",
-            "methods": ["GET"],
+            "methods": [
+              "GET"
+            ],
             "purpose": "Fetch the latest WhatsMyName site list (CDN, CORS-enabled)."
           }
         ],
@@ -52,7 +77,14 @@
           "purpose": "Request each WhatsMyName site directly to see whether the handle resolves to a profile. Desktop only; the request is anonymous (no cookies), never follows redirects, and cannot reach private or loopback addresses."
         }
       },
-      "lifecycle": { "persistence": "opt-in", "controls": ["progress", "cancel"], "progress": "determinate" }
+      "lifecycle": {
+        "persistence": "opt-in",
+        "controls": [
+          "progress",
+          "cancel"
+        ],
+        "progress": "determinate"
+      }
     }
   ]
 }
