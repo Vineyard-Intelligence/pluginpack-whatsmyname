@@ -1,0 +1,58 @@
+{
+  "identifier": "run.vineyard.pluginpacks.whatsmyname",
+  "content_type": "vineyard:pluginpack",
+  "name": "WhatsMyName",
+  "version": "1.0.0",
+  "description": "OSINT username enumeration across ~700 sites using the WhatsMyName dataset, checked directly from the Vineyard desktop app. Desktop only: a browser cannot read the cross-origin responses these checks depend on.",
+  "author": {
+    "name": "vineyard-run",
+    "url": "https://github.com/vineyard-run"
+  },
+  "license": "Apache-2.0",
+  "icon": "at-sign",
+  "platforms": {
+    "primary": "desktop",
+    "web": {
+      "runtime": "sandbox-js",
+      "entry": "inline"
+    },
+    "desktop": {
+      "runtime": "sandbox-js",
+      "entry": "inline",
+      "min_app_version": "0.1.0"
+    }
+  },
+  "plugins": [
+    {
+      "identifier": "run.vineyard.plugins.whatsmyname",
+      "content_type": "vineyard:plugin",
+      "name": "WhatsMyName Account Search",
+      "version": "1.0.0",
+      "description": "Checks whether the selected username exists across ~700 sites (WhatsMyName dataset) by querying each site directly from the Vineyard desktop app, and adds the discovered accounts to the graph. Desktop only — a browser cannot read the cross-origin responses these checks depend on.",
+      "icon": "at-sign",
+      "platforms": {
+        "primary": "desktop",
+        "web": { "runtime": "sandbox-js", "entry": "inline" },
+        "desktop": { "runtime": "sandbox-js", "entry": "inline", "min_app_version": "0.1.0" }
+      },
+      "io": {
+        "consumes": [{ "typepack": "run.vineyard.typepacks.identity", "category": "identity", "name": "user_account" }],
+        "produces": [{ "typepack": "run.vineyard.typepacks.identity", "category": "identity", "name": "user_account" }]
+      },
+      "scopes": {
+        "graph": ["node:read", "node:create", "edge:create"],
+        "network": [
+          {
+            "endpoint": "https://cdn.jsdelivr.net/gh/WebBreacher/WhatsMyName@main/wmn-data.json",
+            "methods": ["GET"],
+            "purpose": "Fetch the latest WhatsMyName site list (CDN, CORS-enabled)."
+          }
+        ],
+        "web_probe": {
+          "purpose": "Request each WhatsMyName site directly to see whether the handle resolves to a profile. Desktop only; the request is anonymous (no cookies), never follows redirects, and cannot reach private or loopback addresses."
+        }
+      },
+      "lifecycle": { "persistence": "opt-in", "controls": ["progress", "cancel"], "progress": "determinate" }
+    }
+  ]
+}
