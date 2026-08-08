@@ -1,6 +1,6 @@
 # WhatsMyName
 
-A Vineyard **plugin pack** for OSINT username enumeration. Given a **Handle**, **User Account**,
+A Vineyard **plugin pack** for OSINT username enumeration. Given a **Handle**, **Account**,
 **Social Account**, **Person**, or **Email Address** node, it checks whether that handle is
 registered across ~700 sites using the [WhatsMyName](https://github.com/WebBreacher/WhatsMyName)
 dataset (CC-BY-SA-4.0), and adds each discovered account to the graph.
@@ -31,8 +31,8 @@ to open the project in the desktop app rather than returning a misleading empty 
 - A site counts as a hit when the response **status matches** the dataset's `e_code` **and** (if the
   entry specifies one) the `e_string` appears in the body — the same rule as upstream WhatsMyName.
 
-Each hit becomes one **User Account** node (`username` carries `handle · Site` so platforms stay
-distinct, the bare handle is kept in `display_name`), linked to the seed with a `same handle` edge.
+Each hit becomes one **Account** node — `username` is the bare handle and `platform` names the
+website, which together are the node's identity — linked to the seed with a `same handle` edge.
 
 ## Layout
 
