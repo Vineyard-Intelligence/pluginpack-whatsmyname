@@ -1,9 +1,9 @@
 # WhatsMyName
 
-A Vineyard **plugin pack** for OSINT username enumeration. Given a **User Account** (or **Person**)
-node, it checks whether that handle is registered across ~700 sites using the
-[WhatsMyName](https://github.com/WebBreacher/WhatsMyName) dataset (CC-BY-SA-4.0), and adds each
-discovered account to the graph.
+A Vineyard **plugin pack** for OSINT username enumeration. Given a **Handle**, **User Account**,
+**Social Account**, **Person**, or **Email Address** node, it checks whether that handle is
+registered across ~700 sites using the [WhatsMyName](https://github.com/WebBreacher/WhatsMyName)
+dataset (CC-BY-SA-4.0), and adds each discovered account to the graph.
 
 ## Desktop only
 
