@@ -6,7 +6,7 @@
   "description": "OSINT username enumeration across ~700 sites using the WhatsMyName dataset, checked directly from the Vineyard desktop app. Desktop only: a browser cannot read the cross-origin responses these checks depend on.",
   "author": {
     "name": "VINEYARD",
-    "url": "https://github.com/vineyard-run"
+    "url": "https://github.com/Vineyard-Intelligence"
   },
   "license": "Apache-2.0",
   "icon": "at-sign",
