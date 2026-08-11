@@ -2,7 +2,7 @@
   "identifier": "run.vineyard.pluginpacks.whatsmyname",
   "content_type": "vineyard:pluginpack",
   "name": "WhatsMyName",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "OSINT username enumeration across ~700 sites using the WhatsMyName dataset, checked directly from the Vineyard desktop app. Runs the whole selection, one handle at a time. Desktop only: a browser cannot read the cross-origin responses these checks depend on.",
   "author": {
     "name": "VINEYARD",
@@ -27,8 +27,8 @@
       "identifier": "run.vineyard.plugins.whatsmyname",
       "content_type": "vineyard:plugin",
       "name": "WhatsMyName Account Search",
-      "version": "2.1.0",
-      "description": "Checks whether each selected handle, username, social account, or email address (local part) exists across ~700 sites (WhatsMyName dataset) by querying each site directly from the Vineyard desktop app. Adds a Handle node for each name and one Account per website it was found on, linked to it. Runs the selection one node at a time — the per-node sweep already uses this app's full request concurrency, so nodes queue rather than compete. Desktop only — a browser cannot read the cross-origin responses these checks depend on.",
+      "version": "2.2.0",
+      "description": "Checks whether each selected username (or the local part of an email address) exists across ~700 sites (WhatsMyName dataset) by querying each site directly from the Vineyard desktop app. Adds a Handle node for each name and one Account per website it was found on, linked to it. A site that looks like a hit is independently re-checked before being added: a body-signature scan for antibot/challenge interstitials, and — if that's clean — a differential probe with a definitely-nonexistent account of matching shape, so a generic error page, a search-page fallback, or an unrecognised antibot wall can't produce a false account. Sites that fail this check are counted as blocked, not silently added. Runs the selection one node at a time — the per-node sweep already uses this app's full request concurrency, so nodes queue rather than compete. Desktop only — a browser cannot read the cross-origin responses these checks depend on.",
       "icon": "at-sign",
       "platforms": {
         "primary": "desktop",
