@@ -32,7 +32,18 @@ website, which together are the node's identity — linked to the seed with a `s
 ## Layout
 
 - `plugins/whatsmyname.manifest.json` — the pack manifest (catalog entry source).
+- `src/` — the source of the bundle.
 - `dist/pack.mjs` — the runnable bundle.
 
 Data source: the WhatsMyName dataset (`github.com/WebBreacher/WhatsMyName`, via jsDelivr). No
 credentials, no server, no cost.
+
+## Building from source
+
+`src/` is the source of `dist/pack.mjs`. The build pins esbuild, so the published bundle can be
+checked against the source:
+
+```bash
+node build.mjs
+git diff --exit-code dist/pack.mjs
+```
