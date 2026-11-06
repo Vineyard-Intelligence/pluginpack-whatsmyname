@@ -301,7 +301,7 @@ const whatsmyname = definePlugin({
         identifier: 'run.vineyard.plugins.whatsmyname',
         content_type: 'vineyard:plugin',
         name: 'WhatsMyName Account Search',
-        version: '2.2.2',
+        version: '2.2.3',
         description:
             'Checks whether each selected handle is registered on ~700 sites from the WhatsMyName dataset. Takes Handle, Account, Social Account or Email Address nodes (an email address uses its local part). Creates a Handle node (unless the seed is one), linked "uses handle" from the seed, and one Account per site where the handle was found (username, platform, profile_url), linked "same handle" from the Handle; likely false positives are counted as blocked and not added. Desktop only.',
         icon: 'at-sign',
@@ -586,7 +586,7 @@ export default definePluginPack({
     identifier: 'run.vineyard.pluginpacks.whatsmyname',
     content_type: 'vineyard:pluginpack',
     name: 'WhatsMyName',
-    version: '2.2.2',
+    version: '2.2.3',
     description:
         'Username enumeration across ~700 sites using the WhatsMyName dataset (https://github.com/WebBreacher/WhatsMyName, CC-BY-SA-4.0). Desktop only.',
     plugins: [whatsmyname],
